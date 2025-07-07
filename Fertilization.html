@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fertilization Date Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🧬 Fertilization Date Estimator</h2>
+    <label for="dob">Enter your Date of Birth:</label>
+    <input type="date" id="dob">
+    <button onclick="calculateFertilization()">Calculate</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculateFertilization() {
+      const dob = document.getElementById("dob").value;
+      if (!dob) {
+        alert("Please enter your date of birth.");
+        return;
+      }
+
+      const birthDate = new Date(dob);
+      const fertilizationDate = new Date(birthDate.getTime() - (266 * 24 * 60 * 60 * 1000)); // Subtract 266 days
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("result").innerHTML =
+       `🍼 Estimated date of fertilization: <strong>${fertilizationDate.toLocaleDateString('en-US', options)}</strong>`;
+    }
+  </script>
+</body>
+</html>
